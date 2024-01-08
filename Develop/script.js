@@ -2,20 +2,88 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
+
+const lowerCaseCharacters = 'abcdefghijklmnopqrstuvwxyz';
+const upperCaseCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numericalCharacters = '0123456789';
+const specialCharacters = '!@#$%^&*()~`{}|[]\_-+=<>?,./:";';
+
 function writePassword() {
-  let characterPrompt = prompt ('How many characters would you like this password to be? Remember: it has to be 8 or higher')
+  let characterPrompt  = false;
 
-if (characterPrompt != 8>100) {
-    alert('It has to be 8 or higher')
-  } else if (characterPrompt != 8>100) 
-  alert('It has to be a number between 8 and 100')
+  // state of character sets to include (default false)
+  let lowerCaseConfirm = false; 
+  let upperCaseConfirm = false;
+  let numericConfirm = false;
+  let specialConfirm = false; 
 
-  let casePrompt = prompt ('Would you like to include lowercase letters?')
+  characterPrompt = prompt ('How many characters would you like this password to be? Remember: it has to be between 8 and 128 characters');
 
-  if (casePrompt != (yes || no))
-  alert('You must answer yes or no')
+  if (isNaN(characterPrompt)) { 
+      alert('Remember: it has to be a number between 8 and 128 characters.');
+      return;
+  }
 
-  var password = generatePassword();
+  if (characterPrompt < 8 || characterPrompt > 128) {  
+      alert('Remember: it has to be between 8 and 128 characters.');
+      return;
+  }    
+
+  // What if they enter a decimal value betweeen 8 and 128?
+
+  // check if lowercase is included
+  lowerCaseConfirm = confirm('Do you want to include lowercase letters in your password?') 
+
+  // check if upper case is included
+  upperCaseConfirm = confirm('Do you want to include uppercase letters in your password?');
+
+  // check if numbers are included
+  numericConfirm = confirm('Do you want to include numbers in your password?');
+
+  // check if special characters are included
+  specialConfirm = confirm('Do you want to include special characters in your password?');
+
+  // make sure at least one of the confirms are true
+  if(!lowerCaseConfirm && !upperCaseConfirm && !numericConfirm && !specialConfirm) {
+    alert('Please select at least one of the previous options.');
+    return;
+  }
+
+  // create a master character set based on selected character sets
+  let passwordCharactersToUse = "";
+  
+  if(lowerCaseConfirm) {
+    passwordCharactersToUse += lowerCaseCharacters;
+  }
+
+  if(upperCaseConfirm) {
+    passwordCharactersToUse += upperCaseCharacters;
+  }
+
+  if(numericConfirm) {
+    passwordCharactersToUse += numericalCharacters;
+  }
+
+  if(specialConfirm) {
+    passwordCharactersToUse += specialCharacters;
+  }
+
+  let password = "";
+
+  // generate our password using the character sets that have been included and for the length specified
+  for(i = 0; i < characterPrompt; i++) {
+      password += passwordCharactersToUse[ Math.floor(Math.random()*passwordCharactersToUse.length) ];
+
+      // Math.random = 0.00000 - 0.9999...;
+      // Math.floor drops off the decimal places (Math.floor(2.676) = 2);
+      // Math.random() * passwordCharactersToUse.length; between 0.00 an passwordCharactersToUse.length
+
+      // Math.random() = 0.15 / passwordCharactersToUse.length = 26;
+      // 0.15*26 = 3.9
+      // Math.floor(3.9) = 3;
+  }
+
+  // Update our html page with the generated password
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -24,5 +92,15 @@ if (characterPrompt != 8>100) {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+ 
+
+
+
+
+ 
+
 
 
