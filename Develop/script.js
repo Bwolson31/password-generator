@@ -49,7 +49,7 @@ function writePassword() {
     return;
   }
 
-  // create a master character set based on selected character sets
+  // create a character set based on selected character sets
   let passwordCharactersToUse = "";
   
   if(lowerCaseConfirm) {
@@ -73,14 +73,6 @@ function writePassword() {
   // generate our password using the character sets that have been included and for the length specified
   for(i = 0; i < characterPrompt; i++) {
       password += passwordCharactersToUse[ Math.floor(Math.random()*passwordCharactersToUse.length) ];
-
-      // Math.random = 0.00000 - 0.9999...;
-      // Math.floor drops off the decimal places (Math.floor(2.676) = 2);
-      // Math.random() * passwordCharactersToUse.length; between 0.00 an passwordCharactersToUse.length
-
-      // Math.random() = 0.15 / passwordCharactersToUse.length = 26;
-      // 0.15*26 = 3.9
-      // Math.floor(3.9) = 3;
   }
 
   // Update our html page with the generated password
