@@ -2,7 +2,7 @@
 
 ## Description
 
-This JavaScript code allows the user to select a password based of various sets of criteria, including the amount of characters needed, use of lowercase letters, uppercase letters, numbers, and special characters. This is done through the use of prompts. 4 character sets were added, consisting of lowercase and uppercase letters as well as numbers and special characters. A special character set called passwordCharactersToUse was added that, based off user-picked prompt conditions, would inlcude any and all sets of character sets. A for loop was then added to generate a password based off the conditions that were previously stated.
+This JavaScript code allows the user to select a password based of various sets of criteria, including the amount of characters needed, use of lowercase letters, uppercase letters, numbers, and special characters. This is done through the use of prompts. 4 character sets were added, consisting of lowercase and uppercase letters as well as numbers and special characters. A special character set called passwordCharactersToUse was added that, based off user-picked prompt conditions, would inlcude any and all sets of character sets. A for loop was then added to generate a password based off the conditions that were previously stated. Through this code, I learned how to implement for loops based off of strings and Math.floor and Math.random. I also learned how to properly implement character sets with conditions. 
 
 ## Installation
 N/A
